@@ -2,6 +2,11 @@
 layout: post
 title: "We benchmarked 4 neural forced aligners across multiple languages. Here's what actually works."
 date: 2026-04-07
+image: /assets/posts/forced-aligner-bench-scheme-rounded.drawio.png
+excerpt: >-
+  Notes from a benchmark comparing four neural forced aligners — Seamless,
+  WhisperX, Qwen3-ForcedAligner, and a commercial cloud ASR — on FLEURS
+  across English, Spanish, French, and Russian.
 description: >-
   Implicit WER-based evaluation of Seamless, WhisperX, Qwen3-ForcedAligner,
   and a commercial cloud ASR on FLEURS across EN/ES/FR/RU.
@@ -25,6 +30,8 @@ Instead of ground-truth timestamps, we use an implicit WER-based evaluation:
 **Better alignment = tighter crops = lower WER.** Accurate boundaries mean each crop contains exactly the target word. Misaligned boundaries cut words or bleed neighboring audio, causing transcription errors.
 
 To isolate alignment quality from aligner ASR quality, results are filtered to utterances where **all** aligners produced perfect transcription reconstruction (strict mode). Inner words only (`[1:-1]`) are used to avoid edge effects at utterance boundaries.
+
+![Benchmark pipeline: align → crop → re-transcribe → score]({{ "/assets/posts/forced-aligner-bench-scheme-rounded.drawio.png" | relative_url }}){: .post-figure }
 
 ## Aligners
 

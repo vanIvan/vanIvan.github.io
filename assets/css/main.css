@@ -446,39 +446,125 @@ table th {
   border-radius: 2px;
 }
 
-/* ---------- blog index ---------- */
+/* ---------- blog index — card layout ---------- */
 
-.post-list {
+.post-cards {
   list-style: none;
   padding: 0;
-  margin: 1.25rem 0 0;
+  margin: 1.5rem 0 0;
 }
 
-.post-list li {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px dotted var(--rule);
+.post-card {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
 }
 
-.post-list li:last-child { border-bottom: none; }
-
-.post-list .post-date {
-  display: inline-block;
-  color: var(--fg-dim);
-  font-family: var(--mono);
-  font-size: 12px;
-  margin-right: 0.7rem;
-  vertical-align: 0.05em;
+.post-card-link {
+  display: block;
+  padding: 1rem 1.25rem 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #ffffff;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color .15s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.post-list a {
+.post-card-link:hover {
+  border-color: #c7d4e3;
+  box-shadow: 0 6px 18px rgba(20, 60, 120, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.post-card-image {
+  float: right;
+  max-width: 240px;
+  width: 38%;
+  height: auto;
+  margin: 0.25rem 0 0.5rem 1.4rem;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.post-card-title {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 19px;
+  font-weight: 400;
   color: var(--fg);
-  font-weight: 500;
+  line-height: 1.3;
+  text-transform: none;
 }
 
-.post-list a:hover {
+.post-card-link:hover .post-card-title {
   color: var(--link);
-  text-decoration: underline;
+}
+
+.post-card-excerpt {
+  margin: 0;
+  font-size: 14px;
+  color: var(--fg-soft);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.post-card-date {
+  display: block;
+  clear: both;
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--fg-dim);
+  margin-top: 0.85rem;
+  text-align: right;
+}
+
+/* responsive: image stacks above text on narrow screens */
+@media (max-width: 560px) {
+  .post-card-link {
+    padding: 0.85rem 1rem 0.75rem;
+  }
+  .post-card-image {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 0.75rem;
+  }
+  .post-card-title {
+    font-size: 17px;
+  }
+}
+
+/* ---------- post page: figure images inside post body ---------- */
+
+.post-hero,
+.post-figure {
+  display: block;
+  margin: 1.75rem auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.post-hero {
+  margin-top: 0;
+}
+
+/* kramdown wraps standalone images in <p>; remove the paragraph margin
+   so the figure isn't double-spaced */
+.post-content p > img.post-hero,
+.post-content p > img.post-figure {
+  margin: 0 auto;
+}
+.post-content p:has(> img.post-figure) {
+  margin: 1.75rem 0;
+  text-align: center;
+}
+.post-content p:has(> img.post-hero) {
+  margin: 0 0 1.75rem;
+  text-align: center;
 }
 
 /* ---------- post page ---------- */
