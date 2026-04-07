@@ -1,20 +1,17 @@
 ---
 layout: page
-title: papers
+title: Papers
 permalink: /publications/
 ---
 
 <div class="publications" markdown="1">
 
-# publications
-
-bold = me. full list also on
-[google scholar](https://scholar.google.com/citations?user=oiIdJcgAAAAJ&hl=en).
+# Publications
 
 ## 2026
 
 <p class="pub"><strong>Ivan Yakovlev</strong>, Anton Okhotnikov.
-"ReDimNet2: Scaling Speaker Verification via Time-Pooled Dimension Reshaping."
+"<a href="https://arxiv.org/abs/2603.11841">ReDimNet2: Scaling Speaker Verification via Time-Pooled Dimension Reshaping</a>."
 <span class="pub-venue">Submitted to Interspeech 2026.</span></p>
 
 ## 2024

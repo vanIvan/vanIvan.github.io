@@ -1,12 +1,12 @@
 ---
 layout: page
-title: blog
+title: Blog
 permalink: /blog/
 ---
 
-# blog
+# Blog
 
-occasional notes on speech models, training infrastructure, and whatever
+Occasional notes on speech models, training infrastructure, and whatever
 else I've been hacking on.
 
 {% if site.posts.size > 0 %}
