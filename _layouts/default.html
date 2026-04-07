@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.url != "/" %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- feed_meta -%}
+  {%- seo -%}
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="primary">
+      <a href="{{ '/' | relative_url }}" class="site-name">ivan</a><span class="sep">/</span><a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} active{% endif %}">about</a><span class="sep">/</span><a href="{{ '/blog/' | relative_url }}" class="nav-link{% if page.url contains '/blog' %} active{% endif %}">blog</a><span class="sep">/</span><a href="{{ '/publications/' | relative_url }}" class="nav-link{% if page.url contains '/publications' %} active{% endif %}">papers</a>
+    </nav>
+  </header>
+
+  <main class="page-content" id="content">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>// © {{ site.time | date: "%Y" }} ivan yakovlev · built with <a href="https://jekyllrb.com">jekyll</a></p>
+  </footer>
+</body>
+</html>

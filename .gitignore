@@ -1,0 +1,26 @@
+# jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# bundler
+Gemfile.lock
+.bundle/
+vendor/
+
+# editors / os
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# node (if any tooling is added later)
+node_modules/
+
+# claude code project notes — local only
+CLAUDE.md
+.claude/

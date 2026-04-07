@@ -1,0 +1,39 @@
+title: Ivan Yakovlev
+tagline: speech processing researcher & engineer
+description: >-
+  Personal site of Ivan Yakovlev — speech processing researcher and engineer
+  working on speaker recognition, multilingual TTS, and streaming ASR.
+url: https://iyakovlev.dev
+
+author:
+  name: Ivan Yakovlev
+  email: ivan@iyakovlev.dev
+
+permalink: /blog/:year/:month/:day/:title/
+
+include:
+  - references
+
+exclude:
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - node_modules
+  - README.md
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: page
