@@ -2,21 +2,21 @@
 layout: post
 title: "We benchmarked 4 neural forced aligners across multiple languages. Here's what actually works."
 date: 2026-04-07
-image: /assets/posts/forced-aligner-bench-scheme-rounded.drawio.png
+image: /assets/posts/forced-aligner-bench/forced-alignment-heatmap.png
 excerpt: >-
   Notes from a benchmark comparing four neural forced aligners — Seamless,
   WhisperX, Qwen3-ForcedAligner, and a commercial cloud ASR — on FLEURS
-  across English, Spanish, French, and Russian.
+  across 9 languages, 4 language families, and 3 writing systems.
 description: >-
   Implicit WER-based evaluation of Seamless, WhisperX, Qwen3-ForcedAligner,
-  and a commercial cloud ASR on FLEURS across EN/ES/FR/RU.
+  and a commercial cloud ASR on FLEURS across 9 languages (EN/ES/FR/RU/DE/TR/HI/KO/JA).
 ---
 
 Many TTS data pipelines rely on forced alignment for segmentation and labeling — but there's no good public benchmark comparing neural approaches **across languages**. Existing evaluations ([Aligner-SUPERB](https://github.com/lifeiteng/Aligner-SUPERB), [Tradition or Innovation, Interspeech 2024](https://arxiv.org/abs/2406.19363)) compare aligners against ground-truth word timestamps on English corpora (TIMIT, Buckeye). That's useful academically, but ground-truth timestamps are expensive to produce and practically don't exist outside English.
 
 The thing is — you don't actually need them. Quality multilingual (audio, transcript) datasets already exist: FLEURS covers 100+ languages, Common Voice and MLS cover dozens more. The bottleneck isn't data, it's the evaluation method. So we built one that works with any (audio, transcript) corpus.
 
-We tested [Seamless](https://github.com/facebookresearch/seamless_communication) (Meta), [WhisperX](https://github.com/m-bain/whisperX), [Qwen3-ForcedAligner](https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B), and a commercial cloud ASR API on [FLEURS](https://huggingface.co/datasets/google/fleurs) across EN / ES / FR / RU.
+We tested [Seamless](https://github.com/facebookresearch/seamless_communication) (Meta), [WhisperX](https://github.com/m-bain/whisperX), [Qwen3-ForcedAligner](https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B), and a commercial cloud ASR API on [FLEURS](https://huggingface.co/datasets/google/fleurs) across 9 languages — EN, ES, FR, RU, DE, TR, HI, KO, JA — spanning 4 language families and 3 writing systems.
 
 ## Method
 
@@ -31,7 +31,7 @@ Instead of ground-truth timestamps, we use an implicit WER-based evaluation:
 
 To isolate alignment quality from aligner ASR quality, results are filtered to utterances where **all** aligners produced perfect transcription reconstruction (strict mode). Inner words only (`[1:-1]`) are used to avoid edge effects at utterance boundaries.
 
-![Benchmark pipeline: align → crop → re-transcribe → score]({{ "/assets/posts/forced-aligner-bench-scheme-rounded.drawio.png" | relative_url }}){: .post-figure }
+![Benchmark pipeline: align → crop → re-transcribe → score]({{ "/assets/posts/forced-aligner-bench/forced-aligner-bench-scheme-rounded.drawio.png" | relative_url }}){: .post-figure }
 
 ## Aligners
 
@@ -46,26 +46,21 @@ To isolate alignment quality from aligner ASR quality, results are filtered to u
 
 Dataset: FLEURS test split, strict filtering (intersection of utterances with perfect transcription across all aligners), inner words only.
 
-### Mean WER by language
+![Mean error rate by language and aligner]({{ "/assets/posts/forced-aligner-bench/forced-alignment-heatmap-9lang.png" | relative_url }}){: .post-figure }
 
-| Aligner | EN | ES | FR | RU |
-|---------|------|------|------|------|
-| Seamless | **0.067** | **0.030** | 0.102 | 0.055 |
-| Qwen3 | 0.072 | 0.039 | 0.104 | 0.059 |
-| Cloud ASR | 0.091 | 0.038 | **0.098** | **0.050** |
-| WhisperX | 0.082 | 0.065 | 0.155 | 0.133 |
-
-Lower is better. **Bold** = best per language.
+A few notes on the extended set: KO and JA use CER instead of WER (character-level evaluation avoids tokenization granularity issues — see below). Qwen3 doesn't support TR or HI. Hindi is hard for everyone (~36% best error rate), partly because strict-perfect filtering reduces the test set to just 73 utterances.
 
 ## Takeaways
 
-**Seamless is the most consistent performer overall.** Duration prediction with monotonic alignment produces stable word boundaries across languages — the model explicitly learns duration, not just token occurrence.
+**Seamless is the most consistent performer overall** — best on 6 of 9 languages (EN, ES, DE, TR, KO, JA). Duration prediction with monotonic alignment produces stable word boundaries across languages and scripts. The model explicitly learns duration, not just token occurrence.
 
-**WhisperX struggles on FR and RU.** CTC emissions predict token occurrence in sequence, not precise duration. The spiked posteriors make boundary extraction unreliable, especially for morphologically rich languages.
+**WhisperX degrades significantly beyond Western European languages.** CTC emissions predict token occurrence in sequence, not precise duration. The spiked posteriors make boundary extraction unreliable — on Korean, median WER is 0.946, meaning boundaries are essentially destroyed. The 1-second minimum input of wav2vec2 CTC is hostile to short per-word crops on agglutinative languages.
 
-**Qwen3-ForcedAligner** had high expectations as an LLM-based aligner, but on this benchmark the advantage over Seamless isn't visible. Worth watching, not a clear winner yet.
+**Qwen3-ForcedAligner** is competitive on Western European languages (consistently 2nd behind Seamless on EN/ES/FR/RU/DE), but struggles on KO and JA where its morphological tokenization fragments words and produces long CER tails. It also only supports 11 languages, leaving TR and HI uncovered.
 
-**Cloud ASR edges out on FR and RU**, but margins are small and Seamless wins on average. Worth noting: alignment comes bundled with their transcription response, so we filtered to utterances where the API's recognition exactly matched FLEURS ground truth. This reduced the test set and may slightly favor it.
+**Cloud ASR edges out on FR, RU, and HI**, but margins are small on FR/RU and Seamless wins on average. Worth noting: alignment comes bundled with their transcription response, so we filtered to utterances where the API's recognition exactly matched FLEURS ground truth. This reduced the test set and may slightly favor it.
+
+**Japanese is a special case.** No word boundaries in text means each aligner tokenizes differently: Seamless produces ~3 sentencepiece chunks per utterance, Qwen3 ~30 morphemes, WhisperX ~50 CTC tokens. After `[1:-1]` filtering, Seamless test set shrinks to 116 utterances vs 234 for others. Seamless still wins on CER, but the comparison isn't fully apples-to-apples.
 
 **Seamless' practical limitation:** fixed set of 38 languages. If yours isn't covered, you're back to CTC-based approaches.
 
