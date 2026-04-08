@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "We benchmarked 4 neural forced aligners across multiple languages. Here's what actually works."
+title: "We benchmarked 4 neural forced aligners across multiple languages. Here's what we found."
 date: 2026-04-07
 image: /assets/posts/forced-aligner-bench/forced-alignment-heatmap.png
 excerpt: >-
@@ -14,7 +14,7 @@ description: >-
 
 Many TTS data pipelines rely on forced alignment for segmentation and labeling — but there's no good public benchmark comparing neural approaches **across languages**. Existing evaluations ([Aligner-SUPERB](https://github.com/lifeiteng/Aligner-SUPERB), [Tradition or Innovation, Interspeech 2024](https://arxiv.org/abs/2406.19363)) compare aligners against ground-truth word timestamps on English corpora (TIMIT, Buckeye). That's useful academically, but ground-truth timestamps are expensive to produce and practically don't exist outside English.
 
-The thing is — you don't actually need them. Quality multilingual (audio, transcript) datasets already exist: FLEURS covers 100+ languages, Common Voice and MLS cover dozens more. The bottleneck isn't data, it's the evaluation method. So we built one that works with any (audio, transcript) corpus.
+But ground-truth timestamps aren't the only way to evaluate alignment quality. Multilingual (audio, transcript) datasets already exist: FLEURS covers 100+ languages, Common Voice and MLS cover dozens more. The bottleneck was the evaluation method — so we built one that works with any (audio, transcript) corpus.
 
 We tested [Seamless](https://github.com/facebookresearch/seamless_communication) (Meta), [WhisperX](https://github.com/m-bain/whisperX), [Qwen3-ForcedAligner](https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B), and a commercial cloud ASR API on [FLEURS](https://huggingface.co/datasets/google/fleurs) across 9 languages — EN, ES, FR, RU, DE, TR, HI, KO, JA — spanning 4 language families and 3 writing systems.
 
