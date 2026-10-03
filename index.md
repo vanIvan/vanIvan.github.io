@@ -38,7 +38,7 @@ I received my B.Sc. in Quantum Mechanics from [Saint Petersburg State University
   <div class="pub-body">
     <div class="pub-title"><a href="https://arxiv.org/abs/2603.11841">ReDimNet2: Scaling Speaker Verification via Time-Pooled Dimension Reshaping</a></div>
     <div class="pub-authors"><em>Ivan Yakovlev</em>, Anton Okhotnikov</div>
-    <div class="pub-venue"><em>Interspeech</em> 2026 (oral) · <a href="https://github.com/PalabraAI/redimnet2">code</a></div>
+    <div class="pub-venue"><em>Interspeech</em> 2026 (oral) · <a href="https://github.com/PalabraAI/redimnet2">[code]</a></div>
   </div>
 </div>
 
