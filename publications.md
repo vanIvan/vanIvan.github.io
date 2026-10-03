@@ -12,7 +12,7 @@ permalink: /publications/
 
 <p class="pub"><strong>Ivan Yakovlev</strong>, Anton Okhotnikov.
 "<a href="https://arxiv.org/abs/2603.11841">ReDimNet2: Scaling Speaker Verification via Time-Pooled Dimension Reshaping</a>."
-<span class="pub-venue">Submitted to Interspeech 2026.</span></p>
+<span class="pub-venue">Interspeech 2026 (oral). <a href="https://github.com/PalabraAI/redimnet2">[code]</a></span></p>
 
 ## 2024
 
