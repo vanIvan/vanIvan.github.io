@@ -8,9 +8,11 @@ permalink: /
   <p class="desc">ivan [at] iyakovlev.dev · Barcelona</p>
 </header>
 
-I am a Senior Research Engineer at [Palabra AI](https://palabra.ai), where I work on multilingual text-to-speech, streaming ASR, and speaker recognition. My research focuses on building production-grade speech models that scale across languages with limited supervision.
+I am a Research Engineer at <a href="https://gradium.ai">Gradium</a>, where I work on real-time speech-to-speech translation, streaming ASR, and text-to-speech. My research focuses on building production-grade speech models that scale across languages with limited supervision.
 
-Prior to joining Palabra, I was a Senior Machine Learning Engineer at [ID R&D Inc.](https://www.idrnd.ai) from 2019 to 2025, working on speaker verification. There I designed the [ReDimNet](#selected-publications) architecture and contributed to our entries in the VoxCeleb and SASV challenges, which received top placements at Interspeech workshops.
+Before Gradium, I was a Senior Research Engineer at <a href="https://palabra.ai">Palabra AI</a> (2025–2026), working on multilingual TTS, streaming ASR, and speaker recognition. There I developed <a href="https://github.com/PalabraAI/redimnet2">ReDimNet2</a>.
+
+Earlier, I was a Senior Machine Learning Engineer at [ID R&D Inc.](https://www.idrnd.ai) from 2019 to 2025, working on speaker verification. There I designed the [ReDimNet](#selected-publications) architecture and contributed to our entries in the VoxCeleb and SASV challenges, which received top placements at Interspeech workshops.
 
 I received my B.Sc. in Quantum Mechanics from [Saint Petersburg State University](https://english.spbu.ru) in 2016.
 
@@ -18,7 +20,9 @@ I received my B.Sc. in Quantum Mechanics from [Saint Petersburg State University
 
 <div class="news" markdown="1">
 
-| Mar 2026 | Submitted *ReDimNet2* to Interspeech 2026 — second-generation ReDimNet with time-pooled dimension reshaping ([arXiv](https://arxiv.org/abs/2603.11841)) |
+| Sep 2026 | Presented *ReDimNet2* (oral) at Interspeech 2026 in Sydney ([arXiv](https://arxiv.org/abs/2603.11841), [code](https://github.com/PalabraAI/redimnet2)) |
+| Sep 2026 | Joined [Gradium](https://gradium.ai) as Research Engineer |
+| Mar 2026 | Released the *ReDimNet2* preprint ([arXiv](https://arxiv.org/abs/2603.11841)) |
 | Mar 2025 | Joined [Palabra AI](https://palabra.ai) as Senior Research Engineer |
 | Jul 2024 | *Reshape Dimensions Network for Speaker Recognition* accepted to Interspeech 2024 ([arXiv](https://arxiv.org/abs/2407.18223)) |
 | Aug 2023 | 1st place (open track) at the VoxCeleb Speaker Recognition Challenge 2023; oral presentation at Interspeech 2023 |
@@ -30,11 +34,11 @@ I received my B.Sc. in Quantum Mechanics from [Saint Petersburg State University
 <div class="bibliography">
 
 <div class="pub-entry">
-  <div class="pub-badge">arXiv<span class="year">2026</span></div>
+  <div class="pub-badge">Interspeech<span class="year">2026</span></div>
   <div class="pub-body">
     <div class="pub-title"><a href="https://arxiv.org/abs/2603.11841">ReDimNet2: Scaling Speaker Verification via Time-Pooled Dimension Reshaping</a></div>
     <div class="pub-authors"><em>Ivan Yakovlev</em>, Anton Okhotnikov</div>
-    <div class="pub-venue">Submitted to <em>Interspeech</em> 2026</div>
+    <div class="pub-venue"><em>Interspeech</em> 2026 (oral) · <a href="https://github.com/PalabraAI/redimnet2">[code]</a></div>
   </div>
 </div>
 
