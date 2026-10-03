@@ -8,7 +8,7 @@ permalink: /
   <p class="desc">ivan [at] iyakovlev.dev · Barcelona</p>
 </header>
 
-I am a Research Engineer at <a href="https://gradium.ai">Gradium</a>, where I work on real-time speech-to-speech translation, streaming ASR, and text-to-speech. My research focuses on building production-grade speech models that scale across languages with limited supervision.
+I am a Research Engineer at <a href="https://gradium.ai">Gradium</a>, where I work on real-time speech-to-speech translation, and data pipelines for ASR/TTS/S2ST. My research focuses on building production-grade speech models that scale across languages with limited supervision.
 
 Before Gradium, I was a Senior Research Engineer at <a href="https://palabra.ai">Palabra AI</a> (2025–2026), working on multilingual TTS, streaming ASR, and speaker recognition. There I developed <a href="https://github.com/PalabraAI/redimnet2">ReDimNet2</a>.
 
