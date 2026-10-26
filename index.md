@@ -20,6 +20,7 @@ I received my B.Sc. in Quantum Mechanics from [Saint Petersburg State University
 
 <div class="news" markdown="1">
 
+| Oct 2026 | *ReDimNet* (Interspeech 2024) passed 100 citations: a small step for speaker verification, a giant leap for my Google Scholar profile |
 | Sep 2026 | Presented *ReDimNet2* (oral) at Interspeech 2026 in Sydney ([arXiv](https://arxiv.org/abs/2603.11841), [code](https://github.com/PalabraAI/redimnet2)) |
 | Sep 2026 | Joined [Gradium](https://gradium.ai) as Research Engineer |
 | Mar 2026 | Released the *ReDimNet2* preprint ([arXiv](https://arxiv.org/abs/2603.11841)) |
